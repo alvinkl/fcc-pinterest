@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import React, { Component } from 'react'
+import axios from 'axios'
 
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { message: "" };
+    this.state = { message: "" }
 
-    this.loadData = this.loadData.bind(this);
+    this.loadData = this.loadData.bind(this)
   }
 
   componentWillMount() {
-    this.loadData();
+    this.loadData()
   }
 
   loadData(){
     axios.get(this.props.url)
       .then(res => {
-        this.setState({ message: res.data.message });
+        this.setState({ message: res.data.message })
       })
   }
 
@@ -28,7 +26,6 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to { this.state.message }</h2>
           <h2></h2>
         </div>
@@ -36,8 +33,8 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
