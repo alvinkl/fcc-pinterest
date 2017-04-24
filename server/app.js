@@ -1,13 +1,17 @@
+require('dotenv').config()
 const express = require('express')
 const path = require('path')
 const favicon = require('serve-favicon')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const mongo = require('mongoose')
 
 const index = require('./routes/index')
 
 const app = express()
+mongo.connect(process.env.MONGO_URI)
+global.Promise = mongo.Promise
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
