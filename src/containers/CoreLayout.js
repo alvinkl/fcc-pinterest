@@ -4,7 +4,7 @@ import Header from './Header'
 
 const CoreLayout = props => (
   <div>
-    <Header />
+    <Header auth={ props.route.auth }/>
     <div className="layout">
       { props.children }
     </div>

@@ -38,7 +38,17 @@ const mock = [
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json({ data: mock })
+  Post.find({}, (err, post) => err ? res.send(err) : res.json(post))
+})
+
+router.post('/addPost', (req, res, next) => {
+  var post = new Post()
+  post.userid = req.body.userid
+  post.image_URI = req.body.image_URI
+  post.likes = 0
+  post.text = req.body.text
+
+  post.save({}, err => err ? res.send(err) : res.json(post))
 })
 
 module.exports = router
