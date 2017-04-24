@@ -28,7 +28,7 @@ class App extends Component {
       <Router history={ history }>
         <Route component={ CoreLayout } auth={ auth }> 
           <div className="container-fluid">
-            <Route path='/' component={ Home }/>
+            <Route path='/' component={ Home } auth={ auth }/>
             <Route path='mypics' component={ MyPics } auth={ auth }/>
             <Route path='addPic' component={ AddPic }auth={ auth }/>
             <Route path='login' component={ () => auth.login() }></Route>

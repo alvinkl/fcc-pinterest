@@ -41,6 +41,11 @@ router.get('/', function(req, res, next) {
   Post.find({}, (err, post) => err ? res.send(err) : res.json(post))
 })
 
+router.get('/mypic/:userid', (req, res, next) => {
+  const userid = req.params.userid
+  Post.find({ userid }, (err, post) => err ? res.send(err) : res.json(post))
+})
+
 router.post('/addPost', (req, res, next) => {
   var post = new Post()
   post.userid = req.body.userid
@@ -49,6 +54,13 @@ router.post('/addPost', (req, res, next) => {
   post.text = req.body.text
 
   post.save({}, err => err ? res.send(err) : res.json(post))
+})
+
+router.post('/like/:postid', (req, res, next) => {
+  const postid = req.params.postid
+  
+  Post.findByIdAndUpdate({ _id: postid }, { $inc: { likes: 1 } }, (err, post) =>
+    err ? res.send(err) : res.json(post))
 })
 
 module.exports = router
